@@ -1,7 +1,6 @@
-DROP DATABASE tx;
-CREATE DATABASE tx;
+DROP DATABASE IF EXISTS `tx`; CREATE DATABASE `tx`;
 
-CREATE TABLE tx.`airlines` (
+CREATE TABLE `tx`.`airlines` (
   `iata_code` char(2) DEFAULT NULL,
   `airline` varchar(30) DEFAULT NULL,
   UNIQUE KEY `idx_iata_code` (`iata_code`)
@@ -33,10 +32,9 @@ CREATE TABLE tx.`flights` (
   `dep_delay` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB;
 
-DROP DATABASE ax;
-CREATE DATABASE ax;
+DROP DATABASE IF EXISTS `ax`; CREATE DATABASE `ax`;
 
-CREATE TABLE `flights` (
+CREATE TABLE `ax`.`flights` (
   `year` smallint(6) DEFAULT NULL,
   `month` tinyint(4) DEFAULT NULL,
   `day` tinyint(4) DEFAULT NULL,
