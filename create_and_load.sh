@@ -28,4 +28,4 @@ ${mariadb} -e "LOAD DATA LOCAL INFILE 'data/airports.csv' INTO TABLE airports FI
 echo '- airports.csv loaded into tx.airports'
 
 # Load flights data into travel_history.flights
-cpimport "ax" "flights" "data/flights.csv" -s ","
+cpimport "ax" "flights" "data/flights.csv" -s "," -E '"'
