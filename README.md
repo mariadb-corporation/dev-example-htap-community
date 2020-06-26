@@ -69,7 +69,27 @@ $ ./create_and_load.sh
 You should output similar to the following:
 
 ```
+creating schema...
+schema created
+loading data...
+- airlines.csv loaded into innodb_db.airlines
+- airports.csv loaded into innodb_db.airports
+Locale = en_US.UTF-8Column delimiter : ,
+Enclosed by Character : "
 
+Using table OID 3042 as the default JOB ID
+Input file(s) will be read from : /dev-example-htap-community
+Job description file : /var/lib/columnstore/data/bulk/tmpjob/3042_D20200626_T165130_S148211_Job_3042.xml
+Log file for this job: /var/lib/columnstore/data/bulk/log/Job_3042.log
+2020-06-26 16:51:30 (1343) INFO : successfully loaded job file /var/lib/columnstore/data/bulk/tmpjob/3042_D20200626_T165130_S148211_Job_3042.xml
+2020-06-26 16:51:30 (1343) INFO : Job file loaded, run time for this step : 0.043752 seconds
+2020-06-26 16:51:30 (1343) INFO : PreProcessing check starts
+2020-06-26 16:51:30 (1343) INFO : input data file /dev-example-htap-community/data/flights.csv
+2020-06-26 16:51:30 (1343) INFO : PreProcessing check completed
+2020-06-26 16:51:30 (1343) INFO : preProcess completed, run time for this step : 0.0360899 seconds
+2020-06-26 16:51:30 (1343) INFO : No of Read Threads Spawned = 1
+2020-06-26 16:51:30 (1343) INFO : No of Parse Threads Spawned = 3
+2020-06-26 16:51:30 (1343) INFO : For table columnstore_db.flights: 679996 rows processed and 679996 rows inserted.
 ```
 
 Confirm that schema creation and data loading has been successful.
@@ -88,7 +108,18 @@ $ SHOW DATABASES();
 
 You should see the following output:
 ```
-
++---------------------+
+| Database            |
++---------------------+
+| calpontsys          |
+| columnstore_db      |
+| columnstore_info    |
+| infinidb_querystats |
+| information_schema  |
+| innodb_db           |
+| mysql               |
+| performance_schema  |
++---------------------+
 ```
 
 3. View table content (and confirm they have data)
@@ -134,7 +165,7 @@ binlog_format = STATEMENT
 # 1. Transactions are replicated from itself
 replicate_same_server_id = ON
 
-# 2. Only write queries that tough innodb_db to the binary log
+# 2. Only write queries that touch innodb_db to the binary log
 binlog_do_db = tx
 
 # 3. Rewrite innodb_db to columnstore_db prior to applying transaction
