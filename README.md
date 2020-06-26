@@ -133,7 +133,40 @@ $ SELECT COUNT(*) FROM columnstore_db.flights;
 And because there is a Cross Engine user included within the Community Server 10.5 container you can also test out cross engine (ex. innodb_db <-> columnstore_db) joins.
 
 ```sql
-$ SELECT a.airline, AVG(f.dep_delay) FROM innodb_db.airlines a INNER JOIN columnstore_db.flights f ON a.iata_code = f.carrier GROUP BY a.airline;
+$ SELECT a.airline, AVG(f.dep_delay) FROM innodb_db.airlines a INNER JOIN columnstore_db.flights f ON a.iata_code = f.carrier GROUP BY a.airline ORDER BY a.airline;
+```
+
+```bash
++-------------------------+------------------+
+| airline                 | AVG(f.dep_delay) |
++-------------------------+------------------+
+| Air Wisconsin Airlines  |           9.6194 |
+| Alaska Airlines         |          11.3068 |
+| Allegiant Air           |          13.1918 |
+| American Airlines       |           9.8433 |
+| American Eagle Airlines |          10.0892 |
+| CommutAir               |          34.8564 |
+| Compass AIrlines        |           6.9968 |
+| Delta Airlines          |           7.7799 |
+| Empire Airlines         |           9.2762 |
+| Endeavor Air            |          10.4156 |
+| ExpressJet              |          18.7828 |
+| Frontier Airlines       |          13.4475 |
+| GoJet Airlines          |          20.8848 |
+| Hawaiian Airlines       |           1.3769 |
+| Horizon Air             |          10.8914 |
+| JetBlue Airways         |          25.3461 |
+| Mesa Airlines Inc       |          19.5124 |
+| Piedmont Airlines       |           8.7041 |
+| PSA Airlines            |          13.5451 |
+| Republic Airways        |          10.6948 |
+| Skywest Airlines        |          16.4908 |
+| Southwest Airlines      |          12.4597 |
+| Spirit Airlines         |          10.4121 |
+| Trans States Airlines   |          16.5218 |
+| United Airline          |          11.9805 |
++-------------------------+------------------+
+25 rows in set (0.154 sec)
 ```
 
 4. Exit MariaDB
