@@ -48,11 +48,11 @@ $ git clone https://github.com/mariadb-corporation/dev-example-htap-community.gi
 This repository includes the following schemas:
 
 * innodb_db (database)
-    * airlines (table) 
-    * airports (table) - all airports within the United States of America
-    * flights (table)
+    * airlines (InnoDB table) 
+    * airports (InnoDB table) - all airports within the United States of America
+    * flights (InnoDB table)
 * columnstore_db (database)
-    * flights (table)
+    * flights (ColumnStore table)
 
 In this sample, the [create_and_load.sh](create_and_load.sh) script will be used to create the schemas (via [schema.sql](sql/schema.sql)) and load the following tables:
 
