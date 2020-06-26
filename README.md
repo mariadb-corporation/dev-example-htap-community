@@ -199,10 +199,10 @@ binlog_format = STATEMENT
 replicate_same_server_id = ON
 
 # 2. Only write queries that touch innodb_db to the binary log
-binlog_do_db = tx
+binlog_do_db = innodb_db
 
 # 3. Rewrite innodb_db to columnstore_db prior to applying transaction
-replicate_rewrite_db = tx->ax
+replicate_rewrite_db = innodb_db->columnstore_db
 ```
 
 Optional: If you want to restrict replication to occur on certain tables you can use `replicate_wild_do_table`.
