@@ -16,13 +16,13 @@ echo "schema created"
 echo "loading data..."
 
 # Load airlines into travel.airlines
-${mariadb} -e "LOAD DATA LOCAL INFILE 'data/airlines.csv' INTO TABLE airlines FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n'" tx
+${mariadb} -e "LOAD DATA LOCAL INFILE 'data/airlines.csv' INTO TABLE airlines FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n'" innodb_db
 
-echo '- airlines.csv loaded into travel.airlines'
+echo '- airlines.csv loaded into innodb_db.airlines'
 
 # Load airports into travel.airlines
-${mariadb} -e "LOAD DATA LOCAL INFILE 'data/airports.csv' INTO TABLE airports FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n'" tx
-echo '- airports.csv loaded into travel.airports'
+${mariadb} -e "LOAD DATA LOCAL INFILE 'data/airports.csv' INTO TABLE airports FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n'" innodb_db
+echo '- airports.csv loaded into innodb_db.airports'
 
 # Load flights data into travel_history.flights
-cpimport "travel_history" "flights" "data/flights.csv" -s "," -E '"'
+cpimport "columnstore_db" "flights" "data/flights.csv" -s "," -E '"'

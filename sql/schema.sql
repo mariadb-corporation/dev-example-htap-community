@@ -1,12 +1,12 @@
-DROP DATABASE IF EXISTS `travel`; CREATE DATABASE `travel`;
+DROP DATABASE IF EXISTS `innodb_db`; CREATE DATABASE `innodb_db`;
 
-CREATE TABLE `travel`.`airlines` (
+CREATE TABLE `innodb_db`.`airlines` (
   `iata_code` char(2) DEFAULT NULL,
   `airline` varchar(30) DEFAULT NULL,
   UNIQUE KEY `idx_iata_code` (`iata_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `travel`.`airports` (
+CREATE TABLE `innodb_db`.`airports` (
   `iata_code` char(3) DEFAULT NULL,
   `airport` varchar(80) DEFAULT NULL,
   `city` varchar(30) DEFAULT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `travel`.`airports` (
   `longitude` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `travel`.`flights` (
+CREATE TABLE `innodb_db`.`flights` (
   `year` smallint(6) DEFAULT NULL,
   `month` tinyint(4) DEFAULT NULL,
   `day` tinyint(4) DEFAULT NULL,
@@ -32,9 +32,9 @@ CREATE TABLE `travel`.`flights` (
   `dep_delay` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB;
 
-DROP DATABASE IF EXISTS `travel_history`; CREATE DATABASE `travel_history`;
+DROP DATABASE IF EXISTS `columnstore_db`; CREATE DATABASE `columnstore_db`;
 
-CREATE TABLE `travel_history`.`flights` (
+CREATE TABLE `columnstore_db`.`flights` (
   `year` smallint(6) DEFAULT NULL,
   `month` tinyint(4) DEFAULT NULL,
   `day` tinyint(4) DEFAULT NULL,
