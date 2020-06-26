@@ -1,0 +1,12 @@
+GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'htap_replication'@'localhost' IDENTIFIED BY 'Password123!';
+
+STOP SLAVE;
+RESET SLAVE ALL;
+
+CHANGE MASTER TO
+MASTER_HOST='localhost',
+MASTER_USER='htap_replication',
+MASTER_PASSWORD='Password123!',
+MASTER_USE_GTID=current_pos;
+
+START SLAVE;
