@@ -221,26 +221,13 @@ Save file and exit.
 $ mariadb < sql/replication.sql
 ```
 
-### 8. Restart MariaDB container 
-
-```bash
-$ exit
-$ docker restart mcs_container
-```
-
-Then, when running again, re-enter the container.
-
-```bash
-$ docker exec -it mcs_container bash
-```
-
-### 9. Restart MariaDB ColumnStore
+### 8. Restart MariaDB ColumnStore 
 
 ```bash 
 $ columnstore-restart
 ```
 
-### 10. Test replication
+### 9. Test replication
 
 You can test replication by inserting a new record into `innodb_db.flights` and confirming that it exists in `columnstore_db.flights`.
 
